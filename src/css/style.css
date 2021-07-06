@@ -1,0 +1,31 @@
+.inner {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+}
+
+/* button */
+
+.MuiButton-containedPrimary {
+  background-color: #aecbcd;
+  height: 50px;
+  border-radius: 30px;
+  box-shadow: none;
+  transition: all 0.8s;
+}
+.MuiButton-containedPrimary:hover {
+  background-color: #71a4a8;
+}
+.MuiButton-contained,
+.MuiButton-contained:hover {
+  box-shadow: none;
+}
+
+a {
+  color: #ca8b90;
+  text-decoration: none;
+  transition: all 0.8s;
+}
+a:hover {
+  color: #eabdbe;
+}

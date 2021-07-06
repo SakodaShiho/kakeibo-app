@@ -1,16 +1,16 @@
-import React from "react";
-import Avatar from "@material-ui/core/Avatar";
+import React, { useContext } from "react";
+import { withRouter } from "react-router";
+import { AuthContext } from "../auth/AuthProvider";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import { NavLink } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Copyright from "./Copyright";
+import "../css/style.css";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,23 +29,35 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#aecbcd",
+    height: "50px",
+    borderRadius: "30px",
+    boxShadow: "none",
+    transition: "all 0.8s",
+    "&:hover": {
+      backgroundColor: "#71a4a8",
+    },
   },
 }));
 
-export default function SignUp() {
+const SignUp = ({ history }) => {
+  const { signup } = useContext(AuthContext);
   const classes = useStyles();
+
+  // AuthContextからsignup関数を受け取る
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+    signup(email.value, password.value, history);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -95,7 +107,11 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <NavLink to="/Login" variant="body2">
+              <NavLink
+                to="/Login"
+                variant="body2"
+                style={{ fontSize: "0.8rem" }}
+              >
                 アカウントをお持ちの方はこちらからログイン
               </NavLink>
             </Grid>
@@ -107,4 +123,6 @@ export default function SignUp() {
       </Box>
     </Container>
   );
-}
+};
+
+export default withRouter(SignUp);

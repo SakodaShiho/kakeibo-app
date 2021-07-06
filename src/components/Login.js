@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../auth/AuthProvider";
 import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router";
 import { makeStyles } from "@material-ui/core/styles";
 import Copyright from "./Copyright";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import "../css/style.css";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -26,31 +26,43 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
     marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#aecbcd",
+    height: "50px",
+    borderRadius: "30px",
+    boxShadow: "none",
+    transition: "all 0.8s",
+    "&:hover": {
+      backgroundColor: "#71a4a8",
+    },
   },
   formControlLabel: {
     fontSize: "0.8rem",
   },
 }));
 
-export default function Login() {
+const Login = ({ history }) => {
+  const { login } = useContext(AuthContext);
   const classes = useStyles();
 
+  // AuthContextからlogin関数を受け取る
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+    login(email.value, password.value, history);
+  };
+
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+    <Container component="main" maxWidth="xs" className="inner">
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Log in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -88,9 +100,9 @@ export default function Login() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Log in
           </Button>
-          <Grid container>
+          <Grid container justify="flex-end">
             <Grid item>
               <NavLink
                 to="/Signup"
@@ -108,4 +120,6 @@ export default function Login() {
       </Box>
     </Container>
   );
-}
+};
+
+export default withRouter(Login);
