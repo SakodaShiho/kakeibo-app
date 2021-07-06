@@ -1,7 +1,20 @@
+.login-contents,
+.signup-contents {
+  height: 100vh;
+  background-color: #f4f4f4;
+  position: relative;
+}
+
 .inner {
-  background-color: #fff;
-  padding: 1rem 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  padding: 2rem;
   border-radius: 15px;
+  background: #fff;
+  box-shadow: 6px 6px 12px #cfcfcf, -6px -6px 12px #fff;
+  height: 500px;
 }
 
 /* button */
@@ -22,10 +35,10 @@
 }
 
 a {
-  color: #ca8b90;
+  color: #dda2a4;
   text-decoration: none;
   transition: all 0.8s;
 }
 a:hover {
-  color: #eabdbe;
+  color: #ecc5c7;
 }

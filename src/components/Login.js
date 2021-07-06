@@ -12,11 +12,10 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import "../css/style.css";
+import "../css/LoginSignup.css";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -57,68 +56,70 @@ const Login = ({ history }) => {
   };
 
   return (
-    <Container component="main" maxWidth="xs" className="inner">
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Log in
-        </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label={
-              <Typography className={classes.formControlLabel}>
-                ログイン情報を記憶する
-              </Typography>
-            }
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+    <div className="login-contents">
+      <Container component="main" maxWidth="xs" className="inner">
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
             Log in
-          </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <NavLink
-                to="/Signup"
-                variant="body2"
-                style={{ fontSize: "0.8rem" }}
-              >
-                新規登録
-              </NavLink>
+          </Typography>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label={
+                <Typography className={classes.formControlLabel}>
+                  ログイン情報を記憶する
+                </Typography>
+              }
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Log in
+            </Button>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <NavLink
+                  to="/Signup"
+                  variant="body2"
+                  style={{ fontSize: "0.8rem" }}
+                >
+                  新規登録
+                </NavLink>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
+    </div>
   );
 };
 
