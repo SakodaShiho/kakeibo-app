@@ -34,11 +34,7 @@ const Header = () => {
   const classes = useStyles();
   const [price, setPrice] = useState("");
 
-  return (
-    <div className="header">
-      <PriceField setPrice={setPrice} price={price} />
-    </div>
-  );
+  return <PriceField setPrice={setPrice} price={price} />;
 };
 
 export default Header;

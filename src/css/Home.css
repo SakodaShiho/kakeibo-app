@@ -31,6 +31,20 @@ input[type="number"]::-webkit-outer-spin-button {
 .MuiInputBase-input {
   padding: 10px;
 }
+
+.item_field {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.item_field .item_list-container {
+  display: flex;
+}
+.income-list,
+.expense-list {
+  flex: 1;
+  padding: 1rem;
+}
 .btn_field {
   text-align: center;
 }
