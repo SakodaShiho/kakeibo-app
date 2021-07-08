@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { app } from "../firebase";
+import { auth } from "../firebase";
 
 // contextの作成
 export const AuthContext = React.createContext();
@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   // ユーザーをログインさせる関数
   const login = async (email, password, history) => {
     try {
-      await app.auth().signInWithEmailAndPassword(email, password);
+      await auth.signInWithEmailAndPassword(email, password);
       history.push("/");
     } catch (error) {
       alert(error);
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   // 新しいユーザーを作成しログインさせる関数
   const signup = async (email, password, history) => {
     try {
-      await app.auth().createUserWithEmailAndPassword(email, password);
+      await auth.createUserWithEmailAndPassword(email, password);
       history.push("/");
     } catch (error) {
       alert(error);
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    app.auth().onAuthStateChanged(setCurrentUser);
+    auth.onAuthStateChanged(setCurrentUser);
   }, []);
 
   return (

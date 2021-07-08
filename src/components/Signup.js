@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     transition: "all 0.8s",
     "&:hover": {
       backgroundColor: "#71a4a8",
+      boxShadow: "none",
     },
   },
 }));
@@ -106,7 +107,7 @@ const SignUp = ({ history }) => {
             >
               Sign Up
             </Button>
-            <Grid container justify="flex-end">
+            <Grid container justify="center">
               <Grid item>
                 <NavLink
                   to="/Login"

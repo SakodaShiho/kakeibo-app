@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { auth } from "../firebase";
-import Header from "./Header";
-import Box from "@material-ui/core/Box";
-import Copyright from "./Copyright";
-import Button from "@material-ui/core/Button";
+import { PriceField } from "./PriceField";
 
 import "../css/Home.css";
 import "../css/LoginSignup.css";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      marginRight: "1rem",
+      width: "25ch",
+    },
+  },
   submit: {
     margin: theme.spacing(3, 0, 2),
     width: "200px",
@@ -22,25 +24,21 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#71a4a8",
       boxShadow: "none",
     },
+    "&:disabled": {
+      backgroundColor: "#c7c7c7",
+    },
   },
 }));
 
-function Home(props) {
+const Header = () => {
   const classes = useStyles();
-  return (
-    <div>
-      <Header />
+  const [price, setPrice] = useState("");
 
-      <div class="btn_field">
-        <Button className={classes.submit} onClick={() => auth.signOut()}>
-          Sign out
-        </Button>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
+  return (
+    <div className="header">
+      <PriceField setPrice={setPrice} price={price} />
     </div>
   );
-}
+};
 
-export default Home;
+export default Header;
