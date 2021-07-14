@@ -1,33 +1,33 @@
-import React, { useState, useContext, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { auth, db } from "../firebase";
-import { Month } from "./Month";
-import { PriceField } from "./PriceField";
-import { Balance } from "./Balance";
-import { AuthContext } from "../auth/AuthProvider";
-import { totalCalc } from "./TotalIncome";
-import { ItemList } from "./ItemList";
-import Box from "@material-ui/core/Box";
-import Copyright from "./Copyright";
-import Button from "@material-ui/core/Button";
-import firebase from "firebase/app";
-import "firebase/firestore";
+import React, { useState, useContext, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { auth, db } from '../firebase';
+import { Month } from './Month';
+import { PriceField } from './PriceField';
+import { Balance } from './Balance';
+import { AuthContext } from '../auth/AuthProvider';
+import { totalCalc } from './TotalIncome';
+import { ItemList } from './ItemList';
+import Box from '@material-ui/core/Box';
+import Copyright from './Copyright';
+import Button from '@material-ui/core/Button';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
-import "../css/Home.css";
-import "../css/LoginSignup.css";
+import '../css/Home.css';
+import '../css/LoginSignup.css';
 
 const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
-    width: "200px",
-    backgroundColor: "#aecbcd",
-    height: "50px",
-    borderRadius: "30px",
-    boxShadow: "none",
-    transition: "all 0.8s",
-    "&:hover": {
-      backgroundColor: "#71a4a8",
-      boxShadow: "none",
+    width: '200px',
+    backgroundColor: '#aecbcd',
+    height: '50px',
+    borderRadius: '30px',
+    boxShadow: 'none',
+    transition: 'all 0.8s',
+    '&:hover': {
+      backgroundColor: '#71a4a8',
+      boxShadow: 'none',
     },
   },
 }));
@@ -35,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
 function Home() {
   const classes = useStyles();
 
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState('');
   const [inputAmount, setInputAmount] = useState(0);
   const [incomeItems, setIncomeItems] = useState([]);
   const [expenseItems, setExpenseItems] = useState([]);
-  const [type, setType] = useState("inc");
+  const [type, setType] = useState('inc');
   const [date, setDate] = useState(new Date());
 
   const { currentUser } = useContext(AuthContext);
@@ -86,10 +86,10 @@ function Home() {
 
   //firebase IncomeData
   const getIncomeData = () => {
-    const incomeData = db.collection("incomeItems");
+    const incomeData = db.collection('incomeItems');
     incomeData
-      .where("uid", "==", currentUser.uid)
-      .orderBy("date")
+      // .where('uid', '==', currentUser.uid)
+      .orderBy('date')
       .startAt(startOfMonth(date))
       .endAt(endOfMonth(date))
       .onSnapshot((query) => {
@@ -104,7 +104,7 @@ function Home() {
   const addIncome = (text, amount) => {
     const docId = Math.random().toString(32).substring(2);
     const date = firebase.firestore.Timestamp.now();
-    db.collection("incomeItems")
+    db.collection('incomeItems')
       .doc(docId)
       .set({
         uid: currentUser.uid,
@@ -121,22 +121,23 @@ function Home() {
   };
 
   const deleteIncome = (docId) => {
-    db.collection("incomeItems").doc(docId).delete();
+    db.collection('incomeItem').doc(docId).delete();
   };
 
   //firebase Expense data
   const getExpenseData = () => {
-    const expenseData = db.collection("expenseItems");
+    const expenseData = db.collection('expenseItems');
     expenseData
-      .where("uid", "==", currentUser.uid)
-      .orderBy("date")
+      // .where('uid', '==', currentUser.uid)
+      .orderBy('date')
       .startAt(startOfMonth(date))
       .endAt(endOfMonth(date))
       .onSnapshot((query) => {
         const expenseItems = [];
-        query.forEach((doc) =>
-          expenseItems.push({ ...doc.data(), docId: doc.id })
-        );
+
+        query.forEach((doc) => {
+          expenseItems.push({ ...doc.data(), docId: doc.id });
+        });
         setExpenseItems(expenseItems);
       });
   };
@@ -144,7 +145,7 @@ function Home() {
   const addExpense = (text, amount) => {
     const docId = Math.random().toString(32).substring(2);
     const date = firebase.firestore.Timestamp.now();
-    db.collection("expenseItems")
+    db.collection('expenseItems')
       .doc(docId)
       .set({
         uid: currentUser.uid,
@@ -161,7 +162,7 @@ function Home() {
   };
 
   const deleteExpense = (docId) => {
-    db.collection("expenseItems").doc(docId).delete();
+    db.collection('expenseItems').doc(docId).delete();
   };
 
   // calculate % and show total
@@ -169,7 +170,7 @@ function Home() {
 
   return (
     <div>
-      <div className="header">
+      <div className='header'>
         <Month
           date={date}
           setPrevMonth={setPrevMonth}
@@ -189,7 +190,7 @@ function Home() {
           thisMonth={thisMonth}
         />
       </div>
-      <div class="item_field">
+      <div class='item_field'>
         <ItemList
           deleteIncome={deleteIncome}
           deleteExpense={deleteExpense}
@@ -201,14 +202,16 @@ function Home() {
         />
       </div>
 
-      <div class="btn_field">
+      <div class='btn_field'>
         <Button className={classes.submit} onClick={() => auth.signOut()}>
           Sign out
         </Button>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
+      <div class='copyright'>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </div>
     </div>
   );
 }

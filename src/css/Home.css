@@ -3,9 +3,54 @@
   height: 100%;
 }
 
+/* showMonth */
+
+.showMonth {
+  padding-top: 2rem;
+  text-align: center;
+}
+.showMonth button {
+  margin: 1rem;
+  padding: 0.5rem;
+  width: 100px;
+  background-color: #e7d0c9;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.showMonth h1 {
+  font-size: 1.5rem;
+  color: #454545;
+}
+
+/* Balance */
+
+.balance-container {
+  color: #454545;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.balance-container h2 {
+  font-size: 1rem;
+  margin-right: 1.5rem;
+  margin-top: 0;
+}
+.balance-container .balance span {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.balance-container .balance {
+  font-size: 2.5rem;
+}
+
+/* PriceField */
+
 .input_field {
-  width: 50%;
-  padding: 5rem 0;
+  width: auto;
+  padding: 2rem 0;
   margin: 0 auto;
 }
 
@@ -15,11 +60,13 @@
 }
 
 .input_field_inner p {
+  display: inline-block;
   font-size: 0.9rem;
 }
 
 .input_field_inner .MuiInputBase-input {
   padding: 10px;
+  margin: 0.5rem 0;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -31,6 +78,29 @@ input[type="number"]::-webkit-outer-spin-button {
 .MuiInputBase-input {
   padding: 10px;
 }
+@media screen and (max-width: 767px) {
+  .input_field {
+    display: block;
+    text-align: center;
+  }
+  .input_field_inner {
+    width: auto;
+    padding: 0 1rem;
+    display: inline-block;
+    text-align: left;
+  }
+  /* .input_field_inner > div form {
+    min-width: 375px;
+  }
+  .input_field_inner > form {
+    min-width: 90%;
+  } */
+  .input_field_inner .MuiInputBase-input {
+    margin: 0.5rem 0;
+  }
+}
+
+/* item field */
 
 .item_field {
   width: 80%;
@@ -51,4 +121,58 @@ input[type="number"]::-webkit-outer-spin-button {
 .btn_field span {
   font-weight: 600;
   color: #fff;
+}
+
+.income-list h3,
+.expense-list h3 {
+  margin-left: 1rem;
+}
+.thisMonthList {
+  display: flex;
+  list-style: none;
+  border-bottom: 1px solid #e7d0c9;
+  padding: 1rem 0 0.5rem;
+}
+.thisMonthList .text {
+  flex: 2;
+}
+.thisMonthList .money-minus,
+.thisMonthList .money-plus {
+  flex: 1;
+  text-align: right;
+  font-weight: 600;
+}
+.thisMonthList .money-minus {
+  color: #d65b6c;
+}
+.thisMonthList .money-plus {
+  color: #6fd7b6;
+}
+
+.delete-btn {
+  margin-left: 1rem;
+  width: 30px;
+  height: 30px;
+  background-color: #e7d0c9;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+@media screen and (max-width: 767px) {
+  .item_field .item_list-container {
+    display: block;
+  }
+  .income-list h3,
+  .expense-list h3 {
+    margin-left: 0rem;
+  }
+  .list {
+    padding-left: 0;
+  }
+}
+
+/* copyright */
+
+.copyright {
+  margin-bottom: 2rem;
 }

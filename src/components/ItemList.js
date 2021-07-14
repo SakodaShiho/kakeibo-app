@@ -1,14 +1,13 @@
 import React from "react";
 import { IncomeItem } from "./IncomeItem";
 import { ExpenseItem } from "./ExpenseItem";
-import { database } from "firebase";
 
 export const ItemList = ({
   deleteIncome,
   deleteExpense,
+  incomeTotal,
   incomeItems,
   expenseItems,
-  incomeTotal,
   selectedMonth,
   thisMonth,
 }) => {
@@ -17,13 +16,13 @@ export const ItemList = ({
       <div className="income-list">
         <h3>収入一覧</h3>
         <ul className="list">
-          {incomeItems.map((incomeItem) => (
+          {incomeItems.map((incomeItems) => (
             <IncomeItem
               deleteIncome={deleteIncome}
-              incomeText={incomeItem.text}
-              incomeAmount={incomeItem.amount}
-              incomeItem={incomeItem}
-              key={incomeItem.docId}
+              incomeText={incomeItems.text}
+              incomeAmount={incomeItems.amount}
+              incomeItems={incomeItems}
+              key={incomeItems.docId}
               selectedMonth={selectedMonth}
               thisMonth={thisMonth}
             />
@@ -33,13 +32,13 @@ export const ItemList = ({
       <div className="expense-list">
         <h3>支出一覧</h3>
         <ul className="list">
-          {expenseItems.map((expenseItem) => (
+          {expenseItems.map((expenseItems) => (
             <ExpenseItem
               deleteExpense={deleteExpense}
-              expenseText={expenseItem.text}
-              expenseAmount={expenseItem.amount}
-              expenseItem={expenseItem}
-              key={expenseItem.docId}
+              expenseText={expenseItems.text}
+              expenseAmount={expenseItems.amount}
+              expenseItems={expenseItems}
+              key={expenseItems.docId}
               incomeTotal={incomeTotal}
               selectedMonth={selectedMonth}
               thisMonth={thisMonth}

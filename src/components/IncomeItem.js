@@ -1,33 +1,41 @@
-import React from 'react';
+import React from "react";
 
-export const IncomeItem = ({ deleteIncome, incomeItem, incomeText, incomeAmount, thisMonth, selectedMonth}) => {
-
+export const IncomeItem = ({
+  deleteIncome,
+  incomeItems,
+  incomeText,
+  incomeAmount,
+  thisMonth,
+  selectedMonth,
+}) => {
   const deleteHandler = () => {
-    deleteIncome(incomeItem.docId);
-  }
+    deleteIncome(incomeItems.docId);
+  };
 
   const showThisMonth = () => {
     return (
       <li className="thisMonthList">
-      <div>{incomeText}</div>
-      <div className="money-plus">+{Number(incomeAmount).toLocaleString()}円</div>
-      <button className="delete-btn" onClick={deleteHandler}>×</button>
+        <div class="text">{incomeText}</div>
+        <div className="money-plus">
+          +{Number(incomeAmount).toLocaleString()}円
+        </div>
+        <button className="delete-btn" onClick={deleteHandler}>
+          ×
+        </button>
       </li>
-    )
-  }
+    );
+  };
 
   const showPastMonth = () => {
     return (
       <li>
-      <div>{incomeText}</div>
-      <div className="money-plus">+{Number(incomeAmount).toLocaleString()}円</div>
+        <div>{incomeText}</div>
+        <div className="money-plus">
+          +{Number(incomeAmount).toLocaleString()}円
+        </div>
       </li>
-    )
-  }
+    );
+  };
 
-  return (
-    <>
-      {thisMonth === selectedMonth ? showThisMonth() : showPastMonth()}
-    </>
-  )
-}
+  return <>{thisMonth === selectedMonth ? showThisMonth() : showPastMonth()}</>;
+};

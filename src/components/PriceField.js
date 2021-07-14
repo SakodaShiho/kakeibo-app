@@ -10,13 +10,17 @@ import "../css/LoginSignup.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > *": {
-      marginRight: "1rem",
-      width: "25ch",
+    "& > div": {
+      marginRight: theme.spacing(1),
+      width: "25vw",
+      [theme.breakpoints.down("xs", "sm")]: {
+        marginRight: theme.spacing(2),
+        width: "80%",
+      },
     },
   },
   formControl: {
-    margin: theme.spacing(1),
+    marginRight: theme.spacing(2),
     minWidth: 120,
   },
   selectEmpty: {
@@ -88,15 +92,15 @@ export const PriceField = ({
   const thisMonthForm = () => {
     return (
       <div className="input_field">
-        <FormControl className={classes.formControl}>
-          <Select onChange={typeHandler}>
-            <MenuItem value="exp" default>
-              支出
-            </MenuItem>
-            <MenuItem value="inc">収入</MenuItem>
-          </Select>
-        </FormControl>
         <div className="input_field_inner">
+          <FormControl className={classes.formControl}>
+            <Select onChange={typeHandler}>
+              <MenuItem value="exp" default>
+                支出
+              </MenuItem>
+              <MenuItem value="inc">収入</MenuItem>
+            </Select>
+          </FormControl>
           <form className={classes.root} noValidate autoComplete="off">
             <TextField
               placeholder="内容"
@@ -110,8 +114,8 @@ export const PriceField = ({
               value={inputAmount}
               onChange={inputAmountHandler}
             />
+            <p>円</p>
           </form>
-          <p>円</p>
         </div>
         <div className="btn_field">
           <Button
