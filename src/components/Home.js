@@ -85,22 +85,6 @@ function Home() {
   const thisMonth = today.getMonth() + 1;
 
   //firebase IncomeData
-  const getIncomeData = () => {
-    const incomeData = db.collection('incomeItems');
-    incomeData
-      .where('uid', '==', currentUser.uid)
-      // .orderBy('date')
-      // .startAt(startOfMonth(date))
-      // .endAt(endOfMonth(date))
-      .onSnapshot((query) => {
-        const incomeItems = [];
-        query.forEach((doc) =>
-          incomeItems.push({ ...doc.data(), docId: doc.id })
-        );
-        setIncomeItems(incomeItems);
-      });
-  };
-
   const addIncome = (text, amount) => {
     const docId = Math.random().toString(32).substring(2);
     const date = firebase.firestore.Timestamp.now();
@@ -120,28 +104,27 @@ function Home() {
       });
   };
 
-  const deleteIncome = (docId) => {
-    db.collection('incomeItem').doc(docId).delete();
-  };
-
-  //firebase Expense data
-  const getExpenseData = () => {
-    const expenseData = db.collection('expenseItems');
-    expenseData
-      .where('uid', '==', currentUser.uid)
-      // .orderBy('date')
-      // .startAt(startOfMonth(date))
-      // .endAt(endOfMonth(date))
+  const getIncomeData = () => {
+    const incomeData = db.collection('incomeItems');
+    incomeData
+      // .where('uid', '==', currentUser.uid)
+      .orderBy('date')
+      .startAt(startOfMonth(date))
+      .endAt(endOfMonth(date))
       .onSnapshot((query) => {
-        const expenseItems = [];
-
-        query.forEach((doc) => {
-          expenseItems.push({ ...doc.data(), docId: doc.id });
-        });
-        setExpenseItems(expenseItems);
+        const incomeItems = [];
+        query.forEach((doc) =>
+          incomeItems.push({ ...doc.data(), docId: doc.id })
+        );
+        setIncomeItems(incomeItems);
       });
   };
 
+  const deleteIncome = (docId) => {
+    db.collection('incomeItems').doc(docId).delete();
+  };
+
+  //firebase Expense data
   const addExpense = (text, amount) => {
     const docId = Math.random().toString(32).substring(2);
     const date = firebase.firestore.Timestamp.now();
@@ -158,6 +141,23 @@ function Home() {
           ...expenseItems,
           { text: inputText, amount: inputAmount, docId: docId, date: date },
         ]);
+      });
+  };
+
+  const getExpenseData = () => {
+    const expenseData = db.collection('expenseItems');
+    expenseData
+      // .where('uid', '==', currentUser.uid)
+      .orderBy('date')
+      .startAt(startOfMonth(date))
+      .endAt(endOfMonth(date))
+      .onSnapshot((query) => {
+        const expenseItems = [];
+
+        query.forEach((doc) => {
+          expenseItems.push({ ...doc.data(), docId: doc.id });
+        });
+        setExpenseItems(expenseItems);
       });
   };
 
