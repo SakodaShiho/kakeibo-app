@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const ExpenseItem = ({
   deleteExpense,
@@ -14,25 +14,28 @@ export const ExpenseItem = ({
 
   const showThisMonth = () => {
     return (
-      <li className="thisMonthList">
-        <div className="text">{expenseText}</div>
-        <div className="money-minus">
+      <li className='thisMonthList'>
+        <div className='text'>{expenseText}</div>
+        <div className='money-minus'>
           -{Number(expenseAmount).toLocaleString()}円
-          <button className="delete-btn" onClick={deleteHandler}>
-            ×
-          </button>
         </div>
+        <button className='delete-btn' onClick={deleteHandler}>
+          ×
+        </button>
       </li>
     );
   };
 
   const showPastMonth = () => {
     return (
-      <li>
-        <div className="text">{expenseText}</div>
-        <div className="money-minus">
+      <li className='pastMonthList'>
+        <div className='text'>{expenseText}</div>
+        <div className='money-minus'>
           -{Number(expenseAmount).toLocaleString()}円
         </div>
+        <button className='delete-btn' onClick={deleteHandler}>
+          ×
+        </button>
       </li>
     );
   };

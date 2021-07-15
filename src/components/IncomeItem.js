@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const IncomeItem = ({
   deleteIncome,
@@ -14,12 +14,12 @@ export const IncomeItem = ({
 
   const showThisMonth = () => {
     return (
-      <li className="thisMonthList">
-        <div class="text">{incomeText}</div>
-        <div className="money-plus">
+      <li className='thisMonthList'>
+        <div className='text'>{incomeText}</div>
+        <div className='money-plus'>
           +{Number(incomeAmount).toLocaleString()}円
         </div>
-        <button className="delete-btn" onClick={deleteHandler}>
+        <button className='delete-btn' onClick={deleteHandler}>
           ×
         </button>
       </li>
@@ -28,11 +28,14 @@ export const IncomeItem = ({
 
   const showPastMonth = () => {
     return (
-      <li>
-        <div>{incomeText}</div>
-        <div className="money-plus">
+      <li className='pastMonthList'>
+        <div className='text'>{incomeText}</div>
+        <div className='money-plus'>
           +{Number(incomeAmount).toLocaleString()}円
         </div>
+        <button className='delete-btn' onClick={deleteHandler}>
+          ×
+        </button>
       </li>
     );
   };

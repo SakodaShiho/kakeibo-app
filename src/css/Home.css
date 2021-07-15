@@ -1,6 +1,7 @@
 .header {
   background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
   height: 100%;
+  padding-bottom: 2rem;
 }
 
 /* showMonth */
@@ -50,7 +51,7 @@
 
 .input_field {
   width: auto;
-  padding: 2rem 0;
+  padding: 2rem 0 0;
   margin: 0 auto;
 }
 
@@ -69,8 +70,8 @@
   margin: 0.5rem 0;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -127,7 +128,8 @@ input[type="number"]::-webkit-outer-spin-button {
 .expense-list h3 {
   margin-left: 1rem;
 }
-.thisMonthList {
+.thisMonthList,
+.pastMonthList {
   display: flex;
   list-style: none;
   border-bottom: 1px solid #e7d0c9;
@@ -137,18 +139,21 @@ input[type="number"]::-webkit-outer-spin-button {
   flex: 2;
 }
 .thisMonthList .money-minus,
-.thisMonthList .money-plus {
+.thisMonthList .money-plus,
+.pastMonthList .money-minus,
+.pastMonthList .money-plus {
   flex: 1;
   text-align: right;
   font-weight: 600;
 }
-.thisMonthList .money-minus {
-  color: #d65b6c;
-}
-.thisMonthList .money-plus {
+.thisMonthList .money-plus,
+.pastMonthList .money-plus {
   color: #6fd7b6;
 }
-
+.thisMonthList .money-minus,
+.pastMonthList .money-minus {
+  color: #d65b6c;
+}
 .delete-btn {
   margin-left: 1rem;
   width: 30px;

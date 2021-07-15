@@ -88,10 +88,10 @@ function Home() {
   const getIncomeData = () => {
     const incomeData = db.collection('incomeItems');
     incomeData
-      // .where('uid', '==', currentUser.uid)
-      .orderBy('date')
-      .startAt(startOfMonth(date))
-      .endAt(endOfMonth(date))
+      .where('uid', '==', currentUser.uid)
+      // .orderBy('date')
+      // .startAt(startOfMonth(date))
+      // .endAt(endOfMonth(date))
       .onSnapshot((query) => {
         const incomeItems = [];
         query.forEach((doc) =>
@@ -128,10 +128,10 @@ function Home() {
   const getExpenseData = () => {
     const expenseData = db.collection('expenseItems');
     expenseData
-      // .where('uid', '==', currentUser.uid)
-      .orderBy('date')
-      .startAt(startOfMonth(date))
-      .endAt(endOfMonth(date))
+      .where('uid', '==', currentUser.uid)
+      // .orderBy('date')
+      // .startAt(startOfMonth(date))
+      // .endAt(endOfMonth(date))
       .onSnapshot((query) => {
         const expenseItems = [];
 
@@ -190,7 +190,7 @@ function Home() {
           thisMonth={thisMonth}
         />
       </div>
-      <div class='item_field'>
+      <div className='item_field'>
         <ItemList
           deleteIncome={deleteIncome}
           deleteExpense={deleteExpense}
@@ -202,12 +202,12 @@ function Home() {
         />
       </div>
 
-      <div class='btn_field'>
+      <div className='btn_field'>
         <Button className={classes.submit} onClick={() => auth.signOut()}>
           Sign out
         </Button>
       </div>
-      <div class='copyright'>
+      <div className='copyright'>
         <Box mt={8}>
           <Copyright />
         </Box>
