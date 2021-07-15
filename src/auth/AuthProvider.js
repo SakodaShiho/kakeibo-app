@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { auth } from "../firebase";
+import React, { useEffect, useState } from 'react';
+import { auth } from '../firebase';
 
 // contextの作成
 export const AuthContext = React.createContext();
@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password, history) => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      history.push("/");
+      history.push('/');
     } catch (error) {
       alert(error);
     }
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   const signup = async (email, password, history) => {
     try {
       await auth.createUserWithEmailAndPassword(email, password);
-      history.push("/");
+      history.push('/');
     } catch (error) {
       alert(error);
     }
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  // auth.onAuthStateChanged(setCurrentUser);
+  auth.onAuthStateChanged(setCurrentUser);
 
   return (
     // Contextを使用して認証に必要な情報をコンポーネントツリーに流し込む。

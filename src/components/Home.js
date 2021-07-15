@@ -107,7 +107,7 @@ function Home() {
   const getIncomeData = () => {
     const incomeData = db.collection('incomeItems');
     incomeData
-      // .where('uid', '==', currentUser.uid)
+      .where('uid', '==', currentUser.uid)
       .orderBy('date')
       .startAt(startOfMonth(date))
       .endAt(endOfMonth(date))
@@ -147,16 +147,15 @@ function Home() {
   const getExpenseData = () => {
     const expenseData = db.collection('expenseItems');
     expenseData
-      // .where('uid', '==', currentUser.uid)
+      .where('uid', '==', currentUser.uid)
       .orderBy('date')
       .startAt(startOfMonth(date))
       .endAt(endOfMonth(date))
       .onSnapshot((query) => {
         const expenseItems = [];
-
-        query.forEach((doc) => {
-          expenseItems.push({ ...doc.data(), docId: doc.id });
-        });
+        query.forEach((doc) =>
+          expenseItems.push({ ...doc.data(), docId: doc.id })
+        );
         setExpenseItems(expenseItems);
       });
   };

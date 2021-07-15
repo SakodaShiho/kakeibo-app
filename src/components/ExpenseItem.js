@@ -3,7 +3,6 @@ import React from 'react';
 export const ExpenseItem = ({
   deleteExpense,
   expenseItems,
-  setExpenseItems,
   expenseText,
   expenseAmount,
   thisMonth,

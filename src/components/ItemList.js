@@ -1,6 +1,6 @@
-import React from "react";
-import { IncomeItem } from "./IncomeItem";
-import { ExpenseItem } from "./ExpenseItem";
+import React from 'react';
+import { IncomeItem } from './IncomeItem';
+import { ExpenseItem } from './ExpenseItem';
 
 export const ItemList = ({
   deleteIncome,
@@ -12,10 +12,10 @@ export const ItemList = ({
   thisMonth,
 }) => {
   return (
-    <div className="item_list-container">
-      <div className="income-list">
+    <div className='item_list-container'>
+      <div className='income-list'>
         <h3>収入一覧</h3>
-        <ul className="list">
+        <ul className='list'>
           {incomeItems.map((incomeItems) => (
             <IncomeItem
               deleteIncome={deleteIncome}
@@ -29,9 +29,9 @@ export const ItemList = ({
           ))}
         </ul>
       </div>
-      <div className="expense-list">
+      <div className='expense-list'>
         <h3>支出一覧</h3>
-        <ul className="list">
+        <ul className='list'>
           {expenseItems.map((expenseItems) => (
             <ExpenseItem
               deleteExpense={deleteExpense}
