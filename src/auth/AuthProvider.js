@@ -62,4 +62,3 @@ export const AuthContext = React.createContext();
       {!loading && children}
     </AuthContext.Provider>
   );
-};
