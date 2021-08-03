@@ -1,47 +1,47 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../auth/AuthProvider";
-import { NavLink } from "react-router-dom";
-import { withRouter } from "react-router";
-import { makeStyles } from "@material-ui/core/styles";
-import Copyright from "./Copyright";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import "../css/LoginSignup.css";
+import React, { useContext } from 'react';
+import { AuthContext } from '../auth/AuthProvider';
+import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { makeStyles } from '@material-ui/core/styles';
+import Copyright from './Copyright';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import '../css/LoginSignup.css';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%",
+    width: '100%',
     marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: "#aecbcd",
-    height: "50px",
-    borderRadius: "30px",
-    boxShadow: "none",
-    transition: "all 0.8s",
-    "&:hover": {
-      backgroundColor: "#71a4a8",
-      boxShadow: "none",
+    backgroundColor: '#aecbcd',
+    height: '50px',
+    borderRadius: '30px',
+    boxShadow: 'none',
+    transition: 'all 0.8s',
+    '&:hover': {
+      backgroundColor: '#71a4a8',
+      boxShadow: 'none',
     },
   },
   formControlLabel: {
-    fontSize: "0.8rem",
+    fontSize: '0.8rem',
   },
 }));
 
@@ -57,37 +57,37 @@ const Login = ({ history }) => {
   };
 
   return (
-    <div className="login-contents">
-      <Container component="main" maxWidth="xs" className="inner">
+    <div className='login-contents'>
+      <Container component='main' maxWidth='xs' className='inner'>
         <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Log in
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
-              variant="outlined"
-              margin="normal"
+              variant='outlined'
+              margin='normal'
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id='email'
+              label='Email Address'
+              name='email'
+              autoComplete='email'
               autoFocus
             />
             <TextField
-              variant="outlined"
-              margin="normal"
+              variant='outlined'
+              margin='normal'
               required
               fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
+              name='password'
+              label='Password'
+              type='password'
+              id='password'
+              autoComplete='current-password'
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value='remember' color='primary' />}
               label={
                 <Typography className={classes.formControlLabel}>
                   ログイン情報を記憶する
@@ -95,20 +95,20 @@ const Login = ({ history }) => {
               }
             />
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
-              color="primary"
+              variant='contained'
+              color='primary'
               className={classes.submit}
             >
               Log in
             </Button>
-            <Grid container justify="center">
+            <Grid container justify='center'>
               <Grid item>
                 <NavLink
-                  to="/Signup"
-                  variant="body2"
-                  style={{ fontSize: "0.8rem" }}
+                  to='/Signup'
+                  variant='body2'
+                  style={{ fontSize: '0.8rem' }}
                 >
                   新規登録
                 </NavLink>

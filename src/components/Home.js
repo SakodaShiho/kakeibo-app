@@ -42,16 +42,18 @@ function Home() {
   const [type, setType] = useState('inc');
   const [date, setDate] = useState(new Date());
 
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, setDisplayName, displayName } = useContext(AuthContext);
 
   useEffect(() => {
     getIncomeData();
     getExpenseData();
+    getDisplayName();
   }, []);
 
   useEffect(() => {
     getIncomeData();
     getExpenseData();
+    getDisplayName();
   }, [date]);
 
   //for Header
@@ -167,9 +169,27 @@ function Home() {
   // calculate % and show total
   const incomeTotal = totalCalc(incomeItems);
 
+  const getDisplayName = () => {
+    const nameData = db.collection('displayName');
+    nameData
+      .where('uid', '==', currentUser.uid)
+      .get()
+      .then((docs) => {
+        // onSnapshot((query) => {
+        // const incomeItems = [];
+        docs.forEach((doc) => {
+          // debugger;
+          setDisplayName(doc.data().name);
+        });
+      });
+  };
+
   return (
     <div>
       <div className='header'>
+        <div className='name_display'>
+          <p>こんにちは、{displayName}さん</p>
+        </div>
         <Month
           date={date}
           setPrevMonth={setPrevMonth}

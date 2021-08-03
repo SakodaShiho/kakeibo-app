@@ -4,6 +4,11 @@
   padding-bottom: 2rem;
 }
 
+.name_display {
+  margin: 0;
+  padding: 1rem;
+  text-align: right;
+}
 /* showMonth */
 
 .showMonth {
