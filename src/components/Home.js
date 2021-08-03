@@ -175,11 +175,9 @@ function Home() {
       .where('uid', '==', currentUser.uid)
       .get()
       .then((docs) => {
-        // onSnapshot((query) => {
-        // const incomeItems = [];
         docs.forEach((doc) => {
-          // debugger;
           setDisplayName(doc.data().name);
+          console.log('displayName');
         });
       });
   };

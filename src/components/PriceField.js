@@ -1,21 +1,21 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import "../css/Home.css";
-import "../css/LoginSignup.css";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import '../css/Home.css';
+import '../css/LoginSignup.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > div": {
+    '& > div': {
       marginRight: theme.spacing(1),
-      width: "25vw",
-      [theme.breakpoints.down("xs", "sm")]: {
+      width: '25vw',
+      [theme.breakpoints.down('xs', 'sm')]: {
         marginRight: theme.spacing(2),
-        width: "80%",
+        width: '80%',
       },
     },
   },
@@ -28,15 +28,15 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    width: "200px",
-    backgroundColor: "#aecbcd",
-    height: "50px",
-    borderRadius: "30px",
-    boxShadow: "none",
-    transition: "all 0.8s",
-    "&:hover": {
-      backgroundColor: "#71a4a8",
-      boxShadow: "none",
+    width: '200px',
+    backgroundColor: '#aecbcd',
+    height: '50px',
+    borderRadius: '30px',
+    boxShadow: 'none',
+    transition: 'all 0.8s',
+    '&:hover': {
+      backgroundColor: '#71a4a8',
+      boxShadow: 'none',
     },
   },
 }));
@@ -66,22 +66,22 @@ export const PriceField = ({
   };
 
   const reset = () => {
-    setInputText("");
-    setInputAmount("");
+    setInputText('');
+    setInputAmount('');
   };
 
   const submitItemHandler = (e) => {
     e.preventDefault();
     if (
-      inputText == "" ||
-      inputAmount == "0" ||
+      inputText === '' ||
+      inputAmount === '0' ||
       !(inputAmount > 0 && inputAmount <= 10000000)
     ) {
-      alert("正しい内容を入力してください");
-    } else if (type === "inc") {
+      alert('正しい内容を入力してください');
+    } else if (type === 'inc') {
       addIncome(inputText, inputAmount);
       reset();
-    } else if (type === "exp") {
+    } else if (type === 'exp') {
       addExpense(inputText, inputAmount);
       reset();
     }
@@ -91,37 +91,37 @@ export const PriceField = ({
 
   const thisMonthForm = () => {
     return (
-      <div className="input_field">
-        <div className="input_field_inner">
+      <div className='input_field'>
+        <div className='input_field_inner'>
           <FormControl className={classes.formControl}>
-            <Select onChange={typeHandler}>
-              <MenuItem value="exp" default>
+            <Select onChange={typeHandler} defaultValue=''>
+              <MenuItem value='exp' default>
                 支出
               </MenuItem>
-              <MenuItem value="inc">収入</MenuItem>
+              <MenuItem value='inc'>収入</MenuItem>
             </Select>
           </FormControl>
-          <form className={classes.root} noValidate autoComplete="off">
+          <form className={classes.root} noValidate autoComplete='off'>
             <TextField
-              placeholder="内容"
-              type="text"
+              placeholder='内容'
+              type='text'
               value={inputText}
               onChange={inputTextHandler}
             />
             <TextField
-              type="number"
-              placeholder="金額"
+              type='number'
+              placeholder='金額'
               value={inputAmount}
               onChange={inputAmountHandler}
             />
             <p>円</p>
           </form>
         </div>
-        <div className="btn_field">
+        <div className='btn_field'>
           <Button
             className={classes.submit}
-            disabled={inputText === ""}
-            type="submit"
+            disabled={inputText === ''}
+            type='submit'
             onClick={submitItemHandler}
           >
             保 存
