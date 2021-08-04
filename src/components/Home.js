@@ -42,18 +42,19 @@ function Home() {
   const [type, setType] = useState('inc');
   const [date, setDate] = useState(new Date());
 
-  const { currentUser, setDisplayName, displayName } = useContext(AuthContext);
+  // const { currentUser, setDisplayName, displayName } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     getIncomeData();
     getExpenseData();
-    getDisplayName();
+    // getDisplayName();
   }, []);
 
   useEffect(() => {
     getIncomeData();
     getExpenseData();
-    getDisplayName();
+    // getDisplayName();
   }, [date]);
 
   //for Header
@@ -169,24 +170,24 @@ function Home() {
   // calculate % and show total
   const incomeTotal = totalCalc(incomeItems);
 
-  const getDisplayName = () => {
-    const nameData = db.collection('displayName');
-    nameData
-      .where('uid', '==', currentUser.uid)
-      .get()
-      .then((docs) => {
-        docs.forEach((doc) => {
-          setDisplayName(doc.data().name);
-          console.log('displayName');
-        });
-      });
-  };
+  // const getDisplayName = () => {
+  //   const nameData = db.collection('displayName');
+  //   nameData
+  //     .where('uid', '==', currentUser.uid)
+  //     .get()
+  //     .then((docs) => {
+  //       docs.forEach((doc) => {
+  //         setDisplayName(doc.data().name);
+  //         console.log('displayName');
+  //       });
+  //     });
+  // };
 
   return (
     <div>
       <div className='header'>
         <div className='name_display'>
-          <p>こんにちは、{displayName}さん</p>
+          {/* <p>こんにちは、{displayName}さん</p> */}
         </div>
         <Month
           date={date}
