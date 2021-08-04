@@ -49,7 +49,7 @@ const SignUp = ({ history }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const { email, password, name } = event.target.elements;
-    signup(email.value, password.value, history);
+    signup(email.value, password.value, name.value, history);
     setDisplayName(name.value);
   };
 
