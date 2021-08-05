@@ -54,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       width: '100%',
-      marginBottom: '2rem',
     },
   },
 }));
@@ -204,12 +203,12 @@ function Home() {
       .then((docs) => {
         docs.forEach((doc) => {
           setDisplayName(doc.data().name);
-          console.log('displayName');
         });
       });
   };
 
   // profile edit modal
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -220,20 +219,23 @@ function Home() {
 
   const body = (
     <div className={classes.paper}>
-      <h2 id='simple-modal-title'>メールアドレスを変更</h2>
-      <p id='simple-modal-description'>現在登録のメールアドレス</p>
-      <p>変更後のメールアドレス</p>
-      <form className={classes.root} noValidate autoComplete='off'>
-        <TextField id='outlined-basic' variant='outlined' />
-      </form>
-      <h2 id='simple-modal-title'>パスワードを変更</h2>
-      <p>変更後のパスワード</p>
-      <form className={classes.root} noValidate autoComplete='off'>
-        <TextField id='outlined-basic' variant='outlined' />
-      </form>
-      <Button className={classes.submit} onClick={handleClose}>
-        閉じる
-      </Button>
+      <div className='modal_item'>
+        <h2>メールアドレスを変更</h2>
+        <p className='modal_title'>現在登録のメールアドレス</p>
+        <p>{currentUser.email}</p>
+        <p className='modal_title'>変更後のメールアドレス</p>
+        <form className={classes.root} noValidate autoComplete='off'>
+          <TextField id='outlined-basic' variant='outlined' />
+        </form>
+      </div>
+      <div className='modal_item'>
+        <h2>パスワードを変更</h2>
+        <p>変更後のパスワード</p>
+        <form className={classes.root} noValidate autoComplete='off'>
+          <TextField id='outlined-basic' variant='outlined' />
+        </form>
+      </div>
+      <Button className={classes.submit}>保存</Button>
     </div>
   );
 
