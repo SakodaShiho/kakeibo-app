@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '30px',
     boxShadow: 'none',
     transition: 'all 0.8s',
+    color: '#fff',
+    fontWeight: '600',
     '&:hover': {
       backgroundColor: '#71a4a8',
       boxShadow: 'none',
@@ -229,7 +231,9 @@ function Home() {
       <form className={classes.root} noValidate autoComplete='off'>
         <TextField id='outlined-basic' variant='outlined' />
       </form>
-      <Button className={classes.submit}>閉じる</Button>
+      <Button className={classes.submit} onClick={handleClose}>
+        閉じる
+      </Button>
     </div>
   );
 
