@@ -184,6 +184,14 @@ input[type='number']::-webkit-outer-spin-button {
   }
 }
 
+/* profile edit */
+
+.profile_edit p {
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
 /* copyright */
 
 .copyright {

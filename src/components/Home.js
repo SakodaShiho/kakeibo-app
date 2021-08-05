@@ -10,6 +10,10 @@ import { ItemList } from './ItemList';
 import Box from '@material-ui/core/Box';
 import Copyright from './Copyright';
 import Button from '@material-ui/core/Button';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import TextField from '@material-ui/core/TextField';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
@@ -30,6 +34,23 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: 'none',
     },
   },
+  paper: {
+    position: 'absolute',
+    width: '50%',
+    borderRadius: '5px',
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    top: `50%`,
+    left: `50%`,
+    transform: `translate(-50%, -50%)`,
+  },
+  root: {
+    '& > *': {
+      width: '25ch',
+      marginBottom: '2rem',
+    },
+  },
 }));
 
 function Home() {
@@ -41,14 +62,13 @@ function Home() {
   const [expenseItems, setExpenseItems] = useState([]);
   const [type, setType] = useState('inc');
   const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
 
   const { currentUser, setDisplayName, displayName } = useContext(AuthContext);
-  // const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     getIncomeData();
     getExpenseData();
-    // getDisplayName();
   }, []);
 
   useEffect(() => {
@@ -183,6 +203,32 @@ function Home() {
       });
   };
 
+  // profile edit modal
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const body = (
+    <div className={classes.paper}>
+      <h2 id='simple-modal-title'>メールアドレスを変更</h2>
+      <p id='simple-modal-description'>現在登録のメールアドレス</p>
+      <p>変更後のメールアドレス</p>
+      <form className={classes.root} noValidate autoComplete='off'>
+        <TextField id='outlined-basic' variant='outlined' />
+      </form>
+      <h2 id='simple-modal-title'>パスワードを変更</h2>
+      <p>変更後のパスワード</p>
+      <form className={classes.root} noValidate autoComplete='off'>
+        <TextField id='outlined-basic' variant='outlined' />
+      </form>
+      <Button className={classes.submit}>閉じる</Button>
+    </div>
+  );
+
   return (
     <div>
       <div className='header'>
@@ -224,6 +270,23 @@ function Home() {
         <Button className={classes.submit} onClick={() => auth.signOut()}>
           Sign out
         </Button>
+      </div>
+      <div className='profile_edit'>
+        <p onClick={handleOpen}>ログイン情報を編集する</p>
+        <Modal
+          aria-labelledby='transition-modal-title'
+          aria-describedby='transition-modal-description'
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={open}>{body}</Fade>
+        </Modal>
       </div>
       <div className='copyright'>
         <Box mt={8}>

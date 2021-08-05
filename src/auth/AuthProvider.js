@@ -19,7 +19,10 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (email, password, name, history) => {
     try {
-      const {user} = await auth.createUserWithEmailAndPassword(email, password);
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
       const docId = Math.random().toString(32).substring(2);
       db.collection('displayName').doc(docId).set({
         uid: user.uid,
