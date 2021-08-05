@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     position: 'absolute',
-    width: '50%',
+    width: '35%',
     borderRadius: '5px',
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
@@ -44,10 +44,14 @@ const useStyles = makeStyles((theme) => ({
     top: `50%`,
     left: `50%`,
     transform: `translate(-50%, -50%)`,
+    [theme.breakpoints.down('xs', 'sm')]: {
+      width: '80%',
+      padding: theme.spacing(3),
+    },
   },
   root: {
     '& > *': {
-      width: '25ch',
+      width: '100%',
       marginBottom: '2rem',
     },
   },
