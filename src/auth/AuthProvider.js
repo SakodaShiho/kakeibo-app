@@ -39,7 +39,6 @@ export const AuthProvider = ({ children }) => {
     return currentUser.updatePassword(password);
   }
   function updateEmail(email) {
-    debugger;
     return currentUser.updateEmail(email);
   }
 

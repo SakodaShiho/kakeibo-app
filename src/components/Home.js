@@ -235,11 +235,9 @@ function Home() {
       alert('メールアドレスを入力してください'); //エラーメッセージを出力
       return false; //送信ボタン本来の動作をキャンセルします
     } else {
-      debugger;
       //条件に一致しない場合(メールアドレスが入力されている場合)
       updateEmail(emailText)
         .then(() => {
-          debugger;
           alert('メールアドレスを更新しました');
         })
         .catch((error) => {
