@@ -285,7 +285,7 @@ function Home() {
           />
           <Button
             className={classes.submit}
-            type='submit'
+            type='button'
             onClick={changeEmail}
           >
             メールアドレスを変更
