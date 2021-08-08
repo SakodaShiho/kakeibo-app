@@ -237,14 +237,13 @@ function Home() {
     } else {
       debugger;
       //条件に一致しない場合(メールアドレスが入力されている場合)
-      updateEmail({
-        email: emailText,
-      })
+      updateEmail(emailText)
         .then(() => {
           debugger;
           alert('メールアドレスを更新しました');
         })
         .catch((error) => {
+          console.log(error);
           debugger;
           alert('メールアドレス更新に失敗しました');
         });
