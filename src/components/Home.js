@@ -69,7 +69,15 @@ function Home() {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
-  const { currentUser, setDisplayName, displayName } = useContext(AuthContext);
+  const {
+    currentUser,
+    setDisplayName,
+    displayName,
+    // updatePassword,
+    updateEmail,
+    setEmailText,
+    emailText,
+  } = useContext(AuthContext);
 
   useEffect(() => {
     getIncomeData();
@@ -217,6 +225,47 @@ function Home() {
     setOpen(false);
   };
 
+  const emailHandleChange = (e) => {
+    setEmailText(() => e.target.value);
+  };
+
+  function changeEmail() {
+    if (emailText === '') {
+      //条件に一致する場合(メールアドレスが空の場合)
+      alert('メールアドレスを入力してください'); //エラーメッセージを出力
+      return false; //送信ボタン本来の動作をキャンセルします
+    } else {
+      debugger;
+      //条件に一致しない場合(メールアドレスが入力されている場合)
+      updateEmail({
+        email: emailText,
+      })
+        .then(() => {
+          debugger;
+          alert('メールアドレスを更新しました');
+        })
+        .catch((error) => {
+          debugger;
+          alert('メールアドレス更新に失敗しました');
+        });
+    }
+  }
+
+  // function changeEmail() {
+  //   updateEmail({
+  //     email: email,
+  //   })
+  //     .then(() => {
+  //       // Update successful
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       // An error occurred
+  //       // ...
+  //     });
+  //   // [END auth_update_user_profile]
+  // }
+
   const body = (
     <div className={classes.paper}>
       <div className='modal_item'>
@@ -224,18 +273,41 @@ function Home() {
         <p className='modal_title'>現在登録のメールアドレス</p>
         <p>{currentUser.email}</p>
         <p className='modal_title'>変更後のメールアドレス</p>
-        <form className={classes.root} noValidate autoComplete='off'>
-          <TextField id='outlined-basic' variant='outlined' />
+        <form
+          className={classes.root}
+          noValidate
+          autoComplete='off'
+          name='email_form'
+        >
+          <TextField
+            id='outlined-basic'
+            variant='outlined'
+            name='email'
+            type='text'
+            onChange={emailHandleChange}
+          />
+          <Button
+            className={classes.submit}
+            type='submit'
+            onClick={changeEmail}
+          >
+            メールアドレスを変更
+          </Button>
         </form>
       </div>
       <div className='modal_item'>
         <h2>パスワードを変更</h2>
-        <p>変更後のパスワード</p>
+        <p>変更後のパスワードを入力</p>
         <form className={classes.root} noValidate autoComplete='off'>
-          <TextField id='outlined-basic' variant='outlined' />
+          <TextField
+            id='outlined-basic'
+            variant='outlined'
+            name='password'
+            type='password'
+          />
         </form>
       </div>
-      <Button className={classes.submit}>保存</Button>
+      <Button className={classes.submit}>パスワードを変更</Button>
     </div>
   );
 

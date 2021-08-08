@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [displayName, setDisplayName] = useState(null);
+  const [emailText, setEmailText] = useState('');
 
   const login = async (email, password, history) => {
     try {
@@ -34,6 +35,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  function updatePassword(password) {
+    return currentUser.updatePassword(password);
+  }
+  function updateEmail(email) {
+    debugger;
+    return currentUser.updateEmail(email);
+  }
+
   const addDisplayName = (name, uid) => {
     // .then((response) => {
     //   setDisplayName(name);
@@ -47,6 +56,10 @@ export const AuthProvider = ({ children }) => {
     setDisplayName,
     login: login,
     signup: signup,
+    updatePassword,
+    updateEmail,
+    emailText,
+    setEmailText,
   };
 
   useEffect(() => {
