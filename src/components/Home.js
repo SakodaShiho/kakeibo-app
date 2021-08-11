@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { auth, db } from '../firebase';
 import { Month } from './Month';
@@ -7,13 +8,17 @@ import { Balance } from './Balance';
 import { AuthContext } from '../auth/AuthProvider';
 import { totalCalc } from './TotalIncome';
 import { ItemList } from './ItemList';
+import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import Copyright from './Copyright';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
@@ -73,10 +78,12 @@ function Home() {
     currentUser,
     setDisplayName,
     displayName,
-    // updatePassword,
+    updatePassword,
     updateEmail,
     setEmailText,
     emailText,
+    passwordText,
+    setPasswordText,
   } = useContext(AuthContext);
 
   useEffect(() => {
@@ -232,8 +239,8 @@ function Home() {
   function changeEmail() {
     if (emailText === '') {
       //条件に一致する場合(メールアドレスが空の場合)
-      alert('メールアドレスを入力してください'); //エラーメッセージを出力
-      return false; //送信ボタン本来の動作をキャンセルします
+      alert('新しいメールアドレスを入力してください'); //エラーメッセージを出力
+      return false;
     } else {
       //条件に一致しない場合(メールアドレスが入力されている場合)
       updateEmail(emailText)
@@ -242,26 +249,49 @@ function Home() {
         })
         .catch((error) => {
           console.log(error);
-          debugger;
           alert('メールアドレス更新に失敗しました');
         });
     }
   }
 
-  // function changeEmail() {
-  //   updateEmail({
-  //     email: email,
-  //   })
-  //     .then(() => {
-  //       // Update successful
-  //       // ...
-  //     })
-  //     .catch((error) => {
-  //       // An error occurred
-  //       // ...
-  //     });
-  //   // [END auth_update_user_profile]
-  // }
+  const [values, setValues] = React.useState({
+    amount: '',
+    password: '',
+    weight: '',
+    weightRange: '',
+    showPassword: false,
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+    setPasswordText(() => event.target.value);
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  function changePassword() {
+    if (passwordText === '') {
+      //条件に一致する場合(パスワードが空の場合)
+      alert('新しいパスワードを入力してください'); //エラーメッセージを出力
+      return false;
+    } else {
+      //条件に一致しない場合(パスワードが入力されている場合)
+      updatePassword(passwordText)
+        .then(() => {
+          alert('パスワードを更新しました');
+        })
+        .catch((error) => {
+          console.log(error);
+          alert('パスワード更新に失敗しました');
+        });
+    }
+  }
 
   const body = (
     <div className={classes.paper}>
@@ -276,8 +306,8 @@ function Home() {
           autoComplete='off'
           name='email_form'
         >
-          <TextField
-            id='outlined-basic'
+          <OutlinedInput
+            id='outlined-adornment-amount'
             variant='outlined'
             name='email'
             type='text'
@@ -295,16 +325,39 @@ function Home() {
       <div className='modal_item'>
         <h2>パスワードを変更</h2>
         <p>変更後のパスワードを入力</p>
-        <form className={classes.root} noValidate autoComplete='off'>
-          <TextField
-            id='outlined-basic'
+        <form
+          className={classes.root}
+          noValidate
+          autoComplete='off'
+          name='password_form'
+        >
+          <OutlinedInput
+            id='outlined-adornment-amount'
             variant='outlined'
-            name='password'
-            type='password'
+            type={values.showPassword ? 'text' : 'password'}
+            value={values.password}
+            onChange={handleChange('password')}
+            endAdornment={
+              <InputAdornment position='end'>
+                <IconButton
+                  aria-label='toggle password visibility'
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
           />
+          <Button
+            className={classes.submit}
+            type='button'
+            onClick={changePassword}
+          >
+            パスワードを変更
+          </Button>
         </form>
       </div>
-      <Button className={classes.submit}>パスワードを変更</Button>
     </div>
   );
 

@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [displayName, setDisplayName] = useState(null);
   const [emailText, setEmailText] = useState('');
+  const [passwordText, setPasswordText] = useState('');
 
   const login = async (email, password, history) => {
     try {
@@ -61,6 +62,8 @@ export const AuthProvider = ({ children }) => {
     updateEmail,
     emailText,
     setEmailText,
+    passwordText,
+    setPasswordText,
   };
 
   useEffect(() => {
