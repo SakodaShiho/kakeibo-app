@@ -254,7 +254,7 @@ function Home() {
     }
   }
 
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     amount: '',
     password: '',
     weight: '',
