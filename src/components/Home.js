@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { auth, db } from '../firebase';
 import { Month } from './Month';
@@ -71,6 +70,7 @@ function Home() {
   const [incomeItems, setIncomeItems] = useState([]);
   const [expenseItems, setExpenseItems] = useState([]);
   const [type, setType] = useState('inc');
+  const [content, setContent] = useState('');
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
@@ -382,6 +382,8 @@ function Home() {
           setInputAmount={setInputAmount}
           type={type}
           setType={setType}
+          content={content}
+          setContent={setContent}
           selectedMonth={selectedMonth}
           thisMonth={thisMonth}
         />

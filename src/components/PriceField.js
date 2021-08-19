@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import '../css/Home.css';
 import '../css/LoginSignup.css';
 
@@ -50,11 +51,42 @@ export const PriceField = ({
   setInputAmount,
   type,
   setType,
+  content,
+  setContent,
   selectedMonth,
   thisMonth,
 }) => {
+  const menuExp = [
+    { value: 'exp', name: '食費' },
+    { value: 'exp', name: '日用品' },
+  ];
+  const menuInc = [
+    { value: 'inc', name: '給与' },
+    { value: 'inc', name: 'お小遣い' },
+  ];
+
   const typeHandler = (e) => {
     setType(e.target.value);
+  };
+
+  const options = (e) => {
+    if (type === 'exp') {
+      menuExp.map((e, key) => {
+        return (
+          <MenuItem value={e.value} key={key}>
+            {e.name}
+          </MenuItem>
+        );
+      });
+    } else if (type === 'inc') {
+      menuInc.map((e, key) => {
+        return <MenuItem key={key}>{e.name}</MenuItem>;
+      });
+    }
+  };
+
+  const contentHandler = (e) => {
+    setContent(e.target.value);
   };
 
   const inputTextHandler = (e) => {
@@ -100,6 +132,13 @@ export const PriceField = ({
               </MenuItem>
               <MenuItem value='inc'>収入</MenuItem>
             </Select>
+            <FormHelperText>支出どちらかを選択</FormHelperText>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <Select onChange={contentHandler} defaultValue=''>
+              {options}
+            </Select>
+            <FormHelperText>内容を選択</FormHelperText>
           </FormControl>
           <form className={classes.root} noValidate autoComplete='off'>
             <TextField
