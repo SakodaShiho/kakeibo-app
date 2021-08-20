@@ -136,7 +136,57 @@ export const PriceField = ({
           </FormControl>
           <FormControl className={classes.formControl}>
             <Select onChange={contentHandler} defaultValue=''>
-              {options}
+              {/* １つ目 */}
+              {/* これは即時関数による方法です */}
+              {
+                (() => {
+                  if (type === 'exp') {
+                    return menuExp.map((e, key) => {
+                      return (
+                        <MenuItem value={e.value} key={key}>
+                          {e.name}
+                        </MenuItem>
+                      );
+                    });
+                  } else if (type === 'inc') {
+                    return menuInc.map((e, key) => {
+                      return <MenuItem key={key}>{e.name}</MenuItem>;
+                    });
+                  }
+                })()
+              }
+              {/* 2つ目 */}
+              {/* これは三項演算子による方法です */}
+              {
+                type === 'exp' ?
+                  menuExp.map((e, key) => {
+                    return (
+                      <MenuItem value={e.value} key={key}>
+                        {e.name}
+                      </MenuItem>
+                    );
+                  }) :
+                  menuInc.map((e, key) => {
+                    return <MenuItem key={key}>{e.name}</MenuItem>;
+                  })
+              }
+              {/* 3つ目 */}
+              {/* これは短絡評価による方法です */}
+              {
+                type === 'exp' &&
+                menuExp.map((e, key) => {
+                  return (
+                    <MenuItem value={e.value} key={key}>
+                      {e.name}
+                    </MenuItem>
+                  );
+                })
+              }
+              {
+                type === 'inc' && menuInc.map((e, key) => {
+                  return <MenuItem key={key}>{e.name}</MenuItem>;
+                })
+              }
             </Select>
             <FormHelperText>内容を選択</FormHelperText>
           </FormControl>
