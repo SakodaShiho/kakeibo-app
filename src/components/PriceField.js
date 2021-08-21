@@ -71,7 +71,6 @@ export const PriceField = ({
   ];
 
   const contentHandler = (e) => {
-    debugger;
     setContent(e.target.value);
     console.log(content);
   };
@@ -128,7 +127,12 @@ export const PriceField = ({
                 if (type === 'exp') {
                   return menuExp.map((e, key) => {
                     return (
-                      <MenuItem value={e.name} key={key} name={e.name}>
+                      <MenuItem
+                        onClick={(e) => console.log(e.target.textContent)}
+                        value={e.name}
+                        key={key}
+                        name={e.name}
+                      >
                         {e.name}
                       </MenuItem>
                     );
@@ -136,7 +140,12 @@ export const PriceField = ({
                 } else if (type === 'inc') {
                   return menuInc.map((e, key) => {
                     return (
-                      <MenuItem value={e.value} key={key} name={e.name}>
+                      <MenuItem
+                        onClick={(e) => console.log(e.target.textContent)}
+                        value={e.value}
+                        key={key}
+                        name={e.name}
+                      >
                         {e.name}
                       </MenuItem>
                     );
