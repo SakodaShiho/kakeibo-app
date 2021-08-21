@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -56,41 +56,29 @@ export const PriceField = ({
   selectedMonth,
   thisMonth,
 }) => {
-  const menuExp = [
-    { value: 'exp', name: '食費' },
-    { value: 'exp', name: '日用品' },
-  ];
-  const menuInc = [
-    { value: 'inc', name: '給与' },
-    { value: 'inc', name: 'お小遣い' },
-  ];
-
   const typeHandler = (e) => {
     setType(e.target.value);
+    console.log(type);
   };
 
-  const options = (e) => {
-    if (type === 'exp') {
-      menuExp.map((e, key) => {
-        return (
-          <MenuItem value={e.value} key={key}>
-            {e.name}
-          </MenuItem>
-        );
-      });
-    } else if (type === 'inc') {
-      menuInc.map((e, key) => {
-        return <MenuItem key={key}>{e.name}</MenuItem>;
-      });
-    }
-  };
+  const menuExp = [
+    { value: '1', name: '食費' },
+    { value: '2', name: '日用品' },
+  ];
+  const menuInc = [
+    { value: '1', name: '給与' },
+    { value: '2', name: 'お小遣い' },
+  ];
 
   const contentHandler = (e) => {
+    debugger;
     setContent(e.target.value);
+    console.log(content);
   };
 
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
+    console.log(inputText);
   };
 
   const inputAmountHandler = (e) => {
@@ -126,7 +114,7 @@ export const PriceField = ({
       <div className='input_field'>
         <div className='input_field_inner'>
           <FormControl className={classes.formControl}>
-            <Select onChange={typeHandler} defaultValue=''>
+            <Select onChange={typeHandler} defaultValue='' required>
               <MenuItem value='exp' default>
                 支出
               </MenuItem>
@@ -135,8 +123,26 @@ export const PriceField = ({
             <FormHelperText>支出どちらかを選択</FormHelperText>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <Select onChange={contentHandler} defaultValue=''>
-              {options}
+            <Select onChange={contentHandler} defaultValue='' required>
+              {(() => {
+                if (type === 'exp') {
+                  return menuExp.map((e, key) => {
+                    return (
+                      <MenuItem value={e.name} key={key} name={e.name}>
+                        {e.name}
+                      </MenuItem>
+                    );
+                  });
+                } else if (type === 'inc') {
+                  return menuInc.map((e, key) => {
+                    return (
+                      <MenuItem value={e.value} key={key} name={e.name}>
+                        {e.name}
+                      </MenuItem>
+                    );
+                  });
+                }
+              })()}
             </Select>
             <FormHelperText>内容を選択</FormHelperText>
           </FormControl>
