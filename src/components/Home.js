@@ -138,11 +138,18 @@ function Home() {
         text,
         amount,
         date,
+        content,
       })
       .then((response) => {
         setIncomeItems([
           ...incomeItems,
-          { text: inputText, amount: inputAmount, docId: docId, date: date },
+          {
+            text: inputText,
+            amount: inputAmount,
+            docId: docId,
+            date: date,
+            content: content,
+          },
         ]);
       });
   };
@@ -178,11 +185,18 @@ function Home() {
         text,
         amount,
         date,
+        content,
       })
       .then((response) => {
         setExpenseItems([
           ...expenseItems,
-          { text: inputText, amount: inputAmount, docId: docId, date: date },
+          {
+            text: inputText,
+            amount: inputAmount,
+            docId: docId,
+            date: date,
+            content: content,
+          },
         ]);
       });
   };

@@ -70,10 +70,11 @@ export const PriceField = ({
     { value: '2', name: 'お小遣い' },
   ];
 
-  const contentHandler = (e) => {
-    setContent(e.target.value);
-    console.log(content);
-  };
+  // const contentHandler = (e) => {
+  //   setContent(e.target.textContent);
+  //   console.log(content);
+  //   debugger;
+  // };
 
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
@@ -98,10 +99,10 @@ export const PriceField = ({
     ) {
       alert('正しい内容を入力してください');
     } else if (type === 'inc') {
-      addIncome(inputText, inputAmount);
+      addIncome(inputText, inputAmount, content);
       reset();
     } else if (type === 'exp') {
-      addExpense(inputText, inputAmount);
+      addExpense(inputText, inputAmount, content);
       reset();
     }
   };
@@ -122,14 +123,16 @@ export const PriceField = ({
             <FormHelperText>支出どちらかを選択</FormHelperText>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <Select onChange={contentHandler} defaultValue='' required>
+            <Select defaultValue='' required>
               {(() => {
                 if (type === 'exp') {
                   return menuExp.map((e, key) => {
                     return (
                       <MenuItem
-                        onClick={(e) => console.log(e.target.textContent)}
-                        value={e.name}
+                        onClick={(e) => {
+                          setContent(e.target.textContent);
+                        }}
+                        value={e.value}
                         key={key}
                         name={e.name}
                       >
@@ -141,7 +144,9 @@ export const PriceField = ({
                   return menuInc.map((e, key) => {
                     return (
                       <MenuItem
-                        onClick={(e) => console.log(e.target.textContent)}
+                        onClick={(e) => {
+                          setContent(e.target.textContent);
+                        }}
                         value={e.value}
                         key={key}
                         name={e.name}
