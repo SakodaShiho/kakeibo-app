@@ -7,6 +7,7 @@ export const IncomeItem = ({
   incomeAmount,
   thisMonth,
   selectedMonth,
+  contentText,
 }) => {
   const deleteHandler = () => {
     deleteIncome(incomeItems.docId);
@@ -16,6 +17,7 @@ export const IncomeItem = ({
     return (
       <li className='thisMonthList'>
         <div className='text'>{incomeText}</div>
+        <div className='content_text'>{contentText}</div>
         <div className='money-plus'>
           +{Number(incomeAmount).toLocaleString()}円
         </div>
@@ -30,6 +32,7 @@ export const IncomeItem = ({
     return (
       <li className='pastMonthList'>
         <div className='text'>{incomeText}</div>
+        <div className='content_text'>{contentText}</div>
         <div className='money-plus'>
           +{Number(incomeAmount).toLocaleString()}円
         </div>

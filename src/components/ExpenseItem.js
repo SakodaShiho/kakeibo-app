@@ -7,6 +7,7 @@ export const ExpenseItem = ({
   expenseAmount,
   thisMonth,
   selectedMonth,
+  contentText,
 }) => {
   const deleteHandler = () => {
     deleteExpense(expenseItems.docId);
@@ -16,6 +17,7 @@ export const ExpenseItem = ({
     return (
       <li className='thisMonthList'>
         <div className='text'>{expenseText}</div>
+        <div className='content_text'>{contentText}</div>
         <div className='money-minus'>
           -{Number(expenseAmount).toLocaleString()}円
         </div>
@@ -30,6 +32,7 @@ export const ExpenseItem = ({
     return (
       <li className='pastMonthList'>
         <div className='text'>{expenseText}</div>
+        <div className='content_text'>{contentText}</div>
         <div className='money-minus'>
           -{Number(expenseAmount).toLocaleString()}円
         </div>

@@ -25,6 +25,7 @@ export const ItemList = ({
               key={incomeItems.docId}
               selectedMonth={selectedMonth}
               thisMonth={thisMonth}
+              contentText={incomeItems.content}
             />
           ))}
         </ul>
@@ -42,6 +43,7 @@ export const ItemList = ({
               incomeTotal={incomeTotal}
               selectedMonth={selectedMonth}
               thisMonth={thisMonth}
+              contentText={expenseItems.content}
             />
           ))}
         </ul>

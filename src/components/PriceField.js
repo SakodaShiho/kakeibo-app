@@ -58,7 +58,6 @@ export const PriceField = ({
 }) => {
   const typeHandler = (e) => {
     setType(e.target.value);
-    console.log(type);
   };
 
   const menuExp = [
@@ -69,12 +68,6 @@ export const PriceField = ({
     { value: '1', name: '給与' },
     { value: '2', name: 'お小遣い' },
   ];
-
-  // const contentHandler = (e) => {
-  //   setContent(e.target.textContent);
-  //   console.log(content);
-  //   debugger;
-  // };
 
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
