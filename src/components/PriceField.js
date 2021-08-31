@@ -83,12 +83,13 @@ export const PriceField = ({
 
   const submitItemHandler = (e) => {
     e.preventDefault();
-    if (
-      inputText === '' ||
-      inputAmount === '0' ||
-      !(inputAmount > 0 && inputAmount <= 10000000)
-    ) {
-      alert('正しい内容を入力してください');
+    if (inputText === '') {
+      alert('テキストを１文字以上入力してください');
+      return;
+    }
+    if (inputAmount === '0' || !(inputAmount > 0 && inputAmount <= 10000000)) {
+      alert('金額を0〜10000000の間で入力してください');
+      return;
     } else if (type === 'inc') {
       addIncome(inputText, inputAmount, content);
       reset();
