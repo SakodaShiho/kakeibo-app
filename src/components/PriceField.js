@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
     minWidth: 120,
   },
-
   submit: {
     margin: theme.spacing(3, 0, 2),
     width: '200px',
@@ -173,7 +172,7 @@ export const PriceField = ({
         <div className='btn_field'>
           <Button
             className={classes.submit}
-            disabled={inputText === ''}
+            disabled={(inputText === '') & (inputAmount === '')}
             type='submit'
             onClick={submitItemHandler}
           >
