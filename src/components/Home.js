@@ -66,7 +66,7 @@ function Home() {
   const classes = useStyles();
 
   const [inputText, setInputText] = useState('');
-  const [inputAmount, setInputAmount] = useState(0);
+  const [inputAmount, setInputAmount] = useState('');
   const [incomeItems, setIncomeItems] = useState([]);
   const [expenseItems, setExpenseItems] = useState([]);
   const [type, setType] = useState('inc');

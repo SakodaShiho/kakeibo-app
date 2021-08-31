@@ -24,9 +24,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
     minWidth: 120,
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+
   submit: {
     margin: theme.spacing(3, 0, 2),
     width: '200px',
@@ -155,7 +153,8 @@ export const PriceField = ({
           </FormControl>
           <form className={classes.root} noValidate autoComplete='off'>
             <TextField
-              placeholder='内容'
+              placeholder='メモ'
+              label='メモ'
               type='text'
               value={inputText}
               onChange={inputTextHandler}
@@ -163,6 +162,7 @@ export const PriceField = ({
             <TextField
               type='number'
               placeholder='金額'
+              label='金額'
               value={inputAmount}
               onChange={inputAmountHandler}
             />
