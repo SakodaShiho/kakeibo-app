@@ -89,6 +89,14 @@ export const PriceField = ({
     if (inputAmount === '0' || !(inputAmount > 0 && inputAmount <= 10000000)) {
       alert('金額を0〜10000000の間で入力してください');
       return;
+    }
+    if (type === '') {
+      alert('支出どちらかを選択してください');
+      return;
+    }
+    if (content === '') {
+      alert('内容を選択してください');
+      return;
     } else if (type === 'inc') {
       addIncome(inputText, inputAmount, content);
       reset();
@@ -172,7 +180,7 @@ export const PriceField = ({
         <div className='btn_field'>
           <Button
             className={classes.submit}
-            disabled={(inputText === '') & (inputAmount === '')}
+            disabled={inputText === '' && inputAmount === ''}
             type='submit'
             onClick={submitItemHandler}
           >

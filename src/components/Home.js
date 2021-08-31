@@ -69,7 +69,7 @@ function Home() {
   const [inputAmount, setInputAmount] = useState('');
   const [incomeItems, setIncomeItems] = useState([]);
   const [expenseItems, setExpenseItems] = useState([]);
-  const [type, setType] = useState('inc');
+  const [type, setType] = useState('');
   const [content, setContent] = useState('');
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
