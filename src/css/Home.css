@@ -148,10 +148,12 @@ label + .MuiInput-formControl {
   border-bottom: 1px solid #e7d0c9;
   padding: 1rem 0 0.5rem;
 }
-.thisMonthList .text {
+.thisMonthList .text,
+.pastMonthList .text {
   flex: 2;
 }
-.thisMonthList .content_text {
+.thisMonthList .content_text,
+.pastMonthList .content_text {
   display: inline-block;
   padding: 5px;
   font-size: 0.8rem;
